@@ -6,6 +6,7 @@ import ComposePost from './components/ComposePost';
 
 export const App = () => {
   const [user, setUser] = useState("")
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     document.title = user ? `${user}'s Feed` : 'Please login'
@@ -16,7 +17,7 @@ export const App = () => {
     return (
       <>
         <Header user={user} setUser={setUser} />
-        <ComposePost user={user} />
+        <ComposePost user={user} setPosts={setPosts} />
       </>    
     )
   }
