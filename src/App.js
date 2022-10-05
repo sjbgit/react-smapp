@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import Login from './components/Login';
 import Header from './components/Header';
+import ComposePost from './components/ComposePost';
+
 
 export const App = () => {
   const [user, setUser] = useState("")
@@ -10,9 +12,17 @@ export const App = () => {
     //user ?? 'Welcome' //user ? user : 'Welcome'
   }, [user])
 
+  const returnHeader =() => {
+    return (
+      <>
+        <Header user={user} setUser={setUser} />
+        <ComposePost user={user} />
+      </>    
+    )
+  }
   return (
     <>
-    { !user ? <Login setUser={setUser} /> : <Header user={user} setUser={setUser} />}
+    { !user ? <Login setUser={setUser} /> : returnHeader() }
     </>    
   )
 
