@@ -18,6 +18,17 @@ export const App = () => {
       <>
         <Header user={user} setUser={setUser} />
         <ComposePost user={user} setPosts={setPosts} />
+        { posts.map(post => (
+          <><p>
+          {post.content}
+          
+            { post.image && (
+              <img src={URL.createObjectURL(post.image)} alt="selected" style={{ height: 100, width: 200, objectFit: 'cover'}} />
+            )}
+          
+          </p>
+          </>
+        ))}
       </>    
     )
   }
