@@ -11,6 +11,7 @@ const ComposePost = ({user, setPosts}) => {
         const post = { content, image, user };
         setPosts((prev) => [post, ...prev])
         setContent("") 
+        setImage(null)
         imageInputRef.current.value = ''       
     }
   return (

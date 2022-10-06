@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Login from './components/Login';
 import Header from './components/Header';
 import ComposePost from './components/ComposePost';
+import PostList from './components/PostList';
 
 
 export const App = () => {
@@ -18,7 +19,8 @@ export const App = () => {
       <>
         <Header user={user} setUser={setUser} />
         <ComposePost user={user} setPosts={setPosts} />
-        { posts.map((post, index) => (
+        <PostList posts={posts}/>
+        {/* { posts.map((post, index) => (
           <React.Fragment key={index}><p>
           {post.content}
           
@@ -28,7 +30,7 @@ export const App = () => {
           
           </p>
           </React.Fragment>
-        ))}
+        ))} */}
       </>    
     )
   }
