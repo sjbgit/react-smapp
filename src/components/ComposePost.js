@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-const ComposePost = ({user, setPosts}) => {
+const ComposePost = ({user, addNewPost}) => {
     const [content, setContent] = useState("")
     const [image , setImage] = useState(null)
 
@@ -9,7 +9,8 @@ const ComposePost = ({user, setPosts}) => {
     const handleSubmit = event => {
         event.preventDefault();
         const post = { content, image, user };
-        setPosts((prev) => [post, ...prev])
+        addNewPost(post)
+        //setPosts((prev) => [post, ...prev])
         setContent("") 
         setImage(null)
         imageInputRef.current.value = ''       

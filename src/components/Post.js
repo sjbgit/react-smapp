@@ -1,15 +1,15 @@
 import React from 'react'
 
-const Post = ({post}) => {
+const Post = ({content, image, user}) => {
   return (
     <div style={{borderStyle: 'solid', borderWidth: '2px' }}>
     <p>
-          Content: {post.content}
+          Content: {content}
           
-            { post.image && (
-              <img src={URL.createObjectURL(post.image)} alt="selected" style={{ height: 100, width: 200, objectFit: 'cover'}} />
+            { image && (
+              <img src={URL.createObjectURL(image)} alt="selected" style={{ height: 100, width: 200, objectFit: 'cover'}} />
             )}
-            user: {post.user}
+            user: {user}
     </p>
     </div>
   )

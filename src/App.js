@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Login from './components/Login';
 import Header from './components/Header';
 import ComposePost from './components/ComposePost';
@@ -9,6 +9,14 @@ export const App = () => {
   const [user, setUser] = useState("")
   const [posts, setPosts] = useState([]);
 
+  const addNewPost = useCallback(newPost => {
+    setPosts([newPost, ...posts])
+  }, [posts])
+  
+  // const addNewPost = newPost => {
+  //   setPosts([newPost, ...posts])
+  // }
+
   useEffect(() => {
     document.title = user ? `${user}'s Feed` : 'Please login'
     //user ?? 'Welcome' //user ? user : 'Welcome'
@@ -18,7 +26,7 @@ export const App = () => {
     return (
       <>
         <Header user={user} setUser={setUser} />
-        <ComposePost user={user} setPosts={setPosts} />
+        <ComposePost user={user} addNewPost={addNewPost} />
         <PostList posts={posts}/>
         {/* { posts.map((post, index) => (
           <React.Fragment key={index}><p>
