@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Login from './components/Login';
 import Header from './components/Header';
 import ComposePost from './components/ComposePost';
@@ -18,8 +18,8 @@ export const App = () => {
       <>
         <Header user={user} setUser={setUser} />
         <ComposePost user={user} setPosts={setPosts} />
-        { posts.map(post => (
-          <><p>
+        { posts.map((post, index) => (
+          <React.Fragment key={index}><p>
           {post.content}
           
             { post.image && (
@@ -27,7 +27,7 @@ export const App = () => {
             )}
           
           </p>
-          </>
+          </React.Fragment>
         ))}
       </>    
     )
