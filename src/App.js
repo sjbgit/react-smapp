@@ -1,18 +1,22 @@
-import React, { useEffect, useState, useCallback, createContext } from 'react'
+import React, { useEffect, useState, useCallback, useContext, createContext, useReducer } from 'react'
 import Login from './components/Login';
 import Header from './components/Header';
 import ComposePost from './components/ComposePost';
 import PostList from './components/PostList';
 
 export const UserContext = createContext();
+export const PostContext = createContext({ posts: [] });
 
 export const App = () => {
   const [user, setUser] = useState("")
-  const [posts, setPosts] = useState([]);
+  //const [posts, setPosts] = useState([]);
 
-  const addNewPost = useCallback(newPost => {
-    setPosts([newPost, ...posts])
-  }, [posts])
+  const initialPostState = useContext(PostContext)
+  const [state, dispatch] = useReducer(() => {}, initialPostState)
+
+  // const addNewPost = useCallback(newPost => {
+  //   setPosts([newPost, ...state.posts])
+  // }, [state.posts])
   
   // const addNewPost = newPost => {
   //   setPosts([newPost, ...posts])
@@ -25,11 +29,15 @@ export const App = () => {
 
   const returnHeader =() => {
     return (
+      <PostContext.Provider value={{state, dispatch}}>
       <UserContext.Provider value={user}>
         <Header user={user} setUser={setUser} />
-        <ComposePost user={user} addNewPost={addNewPost} />
-        <PostList posts={posts}/>        
+        <ComposePost user={user} 
+        // addNewPost={addNewPost} 
+        />
+        <PostList posts={state.posts}/>        
       </UserContext.Provider>    
+      </PostContext.Provider>
     )
   }
   return (
