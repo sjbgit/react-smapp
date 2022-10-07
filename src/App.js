@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, createContext } from 'react'
 import Login from './components/Login';
 import Header from './components/Header';
 import ComposePost from './components/ComposePost';
 import PostList from './components/PostList';
 
+export const UserContext = createContext();
 
 export const App = () => {
   const [user, setUser] = useState("")
@@ -24,22 +25,11 @@ export const App = () => {
 
   const returnHeader =() => {
     return (
-      <>
+      <UserContext.Provider value={user}>
         <Header user={user} setUser={setUser} />
         <ComposePost user={user} addNewPost={addNewPost} />
-        <PostList posts={posts}/>
-        {/* { posts.map((post, index) => (
-          <React.Fragment key={index}><p>
-          {post.content}
-          
-            { post.image && (
-              <img src={URL.createObjectURL(post.image)} alt="selected" style={{ height: 100, width: 200, objectFit: 'cover'}} />
-            )}
-          
-          </p>
-          </React.Fragment>
-        ))} */}
-      </>    
+        <PostList posts={posts}/>        
+      </UserContext.Provider>    
     )
   }
   return (
