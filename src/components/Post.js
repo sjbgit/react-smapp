@@ -3,6 +3,7 @@ import { UserContext } from '../App'
 
 const Post = ({content, image, user}) => {
   const currentUser = useContext(UserContext)
+  const isCurrentUser = currentUser === user;
   const color = 'red'
   return (    
       <div style={{borderStyle: 'solid', borderWidth: '2px' }}>
@@ -12,7 +13,8 @@ const Post = ({content, image, user}) => {
                 { image && (
                   <img src={URL.createObjectURL(image)} alt="selected" style={{ height: 100, width: 200, objectFit: 'cover'}} />
                 )}
-                <div style={{color: currentUser === user && color }}>user: {user}</div>
+                <div style={{color: isCurrentUser  && color }}>user: {user}</div>
+                { isCurrentUser && <button>Delete</button> }
         </div>
       </div>
   )
