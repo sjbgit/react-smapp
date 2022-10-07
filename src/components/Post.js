@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { UserContext } from '../App'
 
 const Post = ({content, image, user}) => {
+  const currentUser = useContext(UserContext)
   const color = 'red'
-  return (
-    <UserContext.Consumer>
-      { currentUser => (
+  return (    
       <div style={{borderStyle: 'solid', borderWidth: '2px' }}>
         <div>
               <div>Content: {content}</div>
@@ -16,8 +15,6 @@ const Post = ({content, image, user}) => {
                 <div style={{color: currentUser === user && color }}>user: {user}</div>
         </div>
       </div>
-      )}
-    </UserContext.Consumer>
   )
 }
 
