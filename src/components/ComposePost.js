@@ -1,6 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
+import { PostContext } from '../App'
 
 const ComposePost = ({user, addNewPost}) => {
+    const { dispatch } = useContext(PostContext)
+
     const [content, setContent] = useState("")
     const [image , setImage] = useState(null)
 
@@ -9,7 +12,8 @@ const ComposePost = ({user, addNewPost}) => {
     const handleSubmit = event => {
         event.preventDefault();
         const post = { content, image, user };
-        addNewPost(post)
+        dispatch({ type: "ADD_POST", payload: { post } })
+        //addNewPost(post)
         //setPosts((prev) => [post, ...prev])
         setContent("") 
         setImage(null)

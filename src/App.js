@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Header from './components/Header';
 import ComposePost from './components/ComposePost';
 import PostList from './components/PostList';
+import postReducer from './reducer';
 
 export const UserContext = createContext();
 export const PostContext = createContext({ posts: [] });
@@ -12,7 +13,7 @@ export const App = () => {
   //const [posts, setPosts] = useState([]);
 
   const initialPostState = useContext(PostContext)
-  const [state, dispatch] = useReducer(() => {}, initialPostState)
+  const [state, dispatch] = useReducer(postReducer, initialPostState)
 
   // const addNewPost = useCallback(newPost => {
   //   setPosts([newPost, ...state.posts])
