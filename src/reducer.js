@@ -7,7 +7,12 @@ function postReducer(state, action) {
         }
         case "DELETE_POST": {
             console.log('delete')
-        
+            const user = action.payload.user
+            const content = action.payload.content
+            const id = action.payload.id
+            const filteredPosts = state.posts.filter(p => p.id !== id);
+            //const filteredPosts = state.posts.filter(p => p.content !== content);
+            return { posts: filteredPosts }
         }
         default:
             return state;
